@@ -66,3 +66,51 @@
 - 回归测试：软件被修改后重新进行的测试，保证软件被修改后没有引入新的错误。
 - 冒烟测试：大规模测试前先验证软件的基本功能是否实现，以判断对象是否具备可测试性。
 - 随机测试：所有输入数据都是随机生成的，用以模拟用户真实操作。
+
+#### 1.3 缺陷管理
+
+##### 定义
+
+末达到功能、实现了不能有的功能、功能超范围、末达到性能要求、软件难以理解和使用
+
+##### 目标
+
+确保每个被发现的缺陷都能被有效的解决。
+
+##### 内容
+
+严重程序：严重缺陷、较大缺陷、较小缺陷、轻微缺陷、其它缺陷
+
+优先级：立即解决、高优先级、正常排队、低优先级
+
+状态：提交、打开、已拒绝、已解决、已关闭、重新打开
+
+测试环境、描述信息、重现步骤等
+
+##### 生命周期
+
+```flow
+st=>start: 打开缺陷(提交)
+disp=>operation: 指派缺陷
+conf=>condition: 确认缺陷
+delay=>condition: 推迟处理
+fixed=>operation: 固定
+op=>operation: 处理缺陷
+regression=>condition: 回归缺陷
+e=>end: 关闭缺陷
+
+st->disp->conf
+conf(yes)->delay
+conf(no)->regression
+delay(yes)->fixed
+delay(no)->op
+fixed->op
+op->regression
+regression(yes)->e
+regression(no)->disp
+
+```
+
+##### 管理工具
+
+bugzilla, bugfree
